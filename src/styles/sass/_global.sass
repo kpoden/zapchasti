@@ -1,0 +1,54 @@
+*
+    padding: 0
+    margin: 0
+    border: 0
+    
+*, *:before, *:after
+    box-sizing: border-box
+    
+*:focus, *:active
+    outline: none
+
+body
+    font-family: OpenSans, Helvetica, Arial, sans-serif
+    color: var(--c-font)
+    height: 100%
+
+main
+    padding-bottom: 100px
+
+.container
+    margin: 0 auto
+    min-width: 360px
+    position: relative
+    min-height: 100%
+
+    +mw(760)
+        padding-top: 60px
+
+
+img
+    max-width: 100%
+
+ul
+    list-style: none
+    margin: 0
+    padding: 0
+
+a
+    text-decoration: none
+    color: inherit
+    transition: .2s
+
+
+.wrapper
+    max-width: 1500px
+    margin: 0 auto
+    padding-left: 50px
+    padding-right: 50px
+
+    +mw(600)
+        padding-left: 20px
+        padding-right: 20px
+
+
