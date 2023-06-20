@@ -9,7 +9,7 @@
         gap: 16px
 
 .product
-    padding: 10px 30px 30px
+    padding: 10px 35px 30px
     background: #FFFFFF
     border: 1px solid #A4A7B7
     border-radius: 12px
@@ -25,7 +25,7 @@
         margin-right: auto
 
     +mw(1150)
-        padding: 7px 22px 22px
+        padding: 7px 24.5px 22px
         width: calc(33% - 10px)
 
     +mw(1000)
@@ -34,7 +34,7 @@
     +mw(650)
         width: calc(50% - 10px)
         height: 250px
-        padding: 5px 20px 14px
+        padding: 5px 17.5px 14px
 
     &__img
         width: 100%
@@ -56,18 +56,16 @@
     &__name
         font-weight: 700
         font-size: 16px
-        line-height: 100%
+        line-height: 130%
         color: #1F1F1F
         padding-bottom: 12px
 
         +mw(1150)
             font-size: 12px
-            line-height: 13px
             padding-bottom: 8px
 
         +mw(650)
             font-size: 9px
-            line-height: 9px
             padding-bottom: 6px
 
     &__art
@@ -127,8 +125,20 @@
             margin-inline: auto
             font-size: 16px
 
-            +mw(1150)
+            +mw(1320)
                 font-size: 12px
 
             +mw(800)
                 font-size: 8px
+
+.spoiler
+    margin-inline: auto
+    text-align: center
+    padding-top: 45px
+    cursor: pointer
+
+    &__text
+        font-weight: 700
+        font-size: 16px
+        line-height: 100%
+        border-bottom: 1px solid #1F1F1F

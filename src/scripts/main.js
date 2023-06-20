@@ -87,3 +87,20 @@ if(document.querySelector('.catalog-slider__inner--mob')) {
 //         },
 //       },
 // });
+
+
+if(document.querySelector('.spoiler')) {
+  spoiler();
+}
+
+function spoiler() {
+  const products = document.querySelectorAll('.product');
+  const spoiler = document.querySelector('.spoiler');
+
+  if(products.length > 4) {
+    for(let i = 4; i < products.length; i++) {
+      products[i].classList.add('hidden');
+  }
+}
+
+}
