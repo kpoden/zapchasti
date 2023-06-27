@@ -157,3 +157,94 @@ function itemDropdown() {
 }
 
 itemDropdown()
+
+function similarProductsSlider() {
+  if(document.querySelector('.similarProductsSlider')) {
+    const similarProductsSlider = new Swiper('.similarProductsSlider', {
+      // Optional parameters
+          slidesPerView: 2,
+          spaceBetween: 20,
+          updateOnWindowResize: true,
+          loop: true,
+          lazy: true,
+          zoom: true,
+          effect: 'slide',
+          autoplay: {
+            delay: 1000
+              },
+          speed: 1500,
+          breakpoints: {
+            750: {
+              slidesPerView: 3
+            },
+            1024: {
+              slidesPerView: 4
+            }
+          },
+    });
+  }
+}
+
+similarProductsSlider()
+
+
+function quantInput() {
+  if(document.querySelector('.item-info__quant-input')) {
+
+    const quantInputWrap = document.querySelector('.item-info__quant-input');
+
+    const minusBtn = quantInputWrap.querySelector('.quant-minus');
+    const plusBtn = quantInputWrap.querySelector('.quant-plus');
+    const quantInput = quantInputWrap.querySelector('.quant-num');
+
+    minusBtn.addEventListener('click', () => {
+      let count = parseInt(quantInput.value) - 1;
+      count = count < 1 ? 1 : count;
+      quantInput.value = count;
+      quantInput.setAttribute('value', count);
+    });
+
+    
+    plusBtn.addEventListener('click', () => {
+      let count = parseInt(quantInput.value) + 1;
+      count = count > parseInt(quantInput.getAttribute('data-max-count')) ? parseInt(quantInput.getAttribute('data-max-count')) : count;
+      quantInput.value = count;
+      quantInput.setAttribute('value', count);
+    });
+
+    quantInput.addEventListener("change", function() {
+          if (this.value.match(/[^0-9]/g)) {
+              this.value = this.value.replace(/[^0-9]/g, '');
+          }
+          if (this.value == "") {
+              this.value = 1;
+              quantInput.setAttribute('value', 1);
+          }
+          if (this.value > parseInt(this.getAttribute('data-max-count'))) {
+              this.value = parseInt(this.getAttribute('data-max-count'));
+          }
+      });
+
+    quantInput.addEventListener("keyup", function() {
+          if (this.value.match(/[^0-9]/g)) {
+              this.value = this.value.replace(/[^0-9]/g, '');
+          }
+      });
+
+    quantInput.addEventListener("input", function() {
+          if (this.value.match(/[^0-9]/g)) {
+              this.value = this.value.replace(/[^0-9]/g, '');
+          }
+      });
+
+    quantInput.addEventListener("click", function() {
+          if (this.value.match(/[^0-9]/g)) {
+              this.value = this.value.replace(/[^0-9]/g, '');
+          }
+      });  
+
+
+  }
+}
+
+quantInput();
