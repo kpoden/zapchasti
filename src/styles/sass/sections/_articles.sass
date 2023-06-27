@@ -1,0 +1,93 @@
+.articles
+    display: flex
+    flex-wrap: wrap
+    gap: 20px
+
+.article
+    max-width: calc(33% - 20px)
+    padding: 0px 0px 20px 0px
+    border-radius: 8px;
+    border: 1px solid var(--c-hover-grey)
+
+    &__img
+        border-radius: 8px
+        overflow: hidden
+
+        img
+            width: 100%
+            height: 100%
+            object-fit: cover
+            display: block;
+
+
+    &__info
+        padding: 20px
+
+    &__date-wrap
+        display: flex
+        align-items: center
+        padding-bottom: 10px
+        border-bottom: 1px solid #DFDFDF
+        margin-bottom: 20px
+        
+
+    &__date
+        padding-left: 8px
+        font-size: 12px;
+        font-family: Inter; 
+
+    &__title
+        font-size: 18px
+        font-weight: 700
+        padding-bottom: 15px
+
+    &__previewText
+        font-size: 16px
+        line-height: 150%
+
+
+.articlePage
+    padding-bottom: 90px
+
+    &__date-wrap
+        display: flex
+        align-items: center
+        padding-top: 40px
+        padding-bottom: 10px
+
+    &__title
+        padding-top: 0
+        padding-bottom: 70px
+
+    &__date
+        padding-left: 8px
+        font-size: 12px;
+        font-family: Inter
+
+    &__text
+        font-size: 32px
+        line-height: 150%
+
+    &__img
+        padding-top: 40px
+        padding-bottom: 40px
+        
+        img
+            border-radius: 8px
+
+        figcaption
+            font-size: 16px
+            font-style: italic
+            line-height: 150%
+
+.similarArticlesList-title
+    padding-bottom: 50px
+
+.similarArticlesList
+    display: flex
+    flex-wrap: wrap
+    gap: 20px
+
+        
+
+
