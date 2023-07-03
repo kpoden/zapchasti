@@ -248,3 +248,73 @@ function quantInput() {
 }
 
 quantInput();
+
+function modalFunc() {
+  const modal = document.querySelector('.modal');
+  const triggers = document.querySelectorAll('.modal-trigger');
+  const close = document.querySelectorAll('.modal__close');
+
+  modal.addEventListener("click", (e) => {
+    e = e.target;
+    if(e.classList.contains('modal')) {
+      modal.classList.remove('opened');
+      document.body.classList.remove('_locked');
+    }
+  });
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      modal.classList.add('opened');
+      document.body.classList.add('_locked');
+  });
+  })
+
+  close.forEach((close) => {
+    close.addEventListener('click', () => {
+      modal.classList.remove('opened');
+      document.body.classList.remove('_locked');
+    });
+  });
+
+      
+
+}
+
+modalFunc();
+
+
+
+class Form {
+
+  constructor(id) {
+    this.formBlock = document.querySelector(id);
+    this.form = this.formBlock.querySelector('form');
+    this.mainContent = this.formBlock.querySelector('.mainForm__content');
+    this.thanksContent = this.formBlock.querySelector('.thanksWindow__content');
+    this.init();
+  }
+
+  send() {
+    this.form.addEventListener('submit', (e) => {
+      console.log('send');
+      e.preventDefault();
+      this.mainContent.classList.add('hidden');
+      this.thanksContent.classList.remove('hidden');
+
+    });
+  }
+
+  init() {
+    this.send();
+  }
+}
+
+if(document.querySelector('.contacts-form')) {
+  const contactsForm = new Form('.contacts-form');
+}
+
+if(document.querySelector('.basket-form')) {
+  const contactsForm = new Form('.basket-form');
+}
+
+const floatForm = new Form('.popup-form');

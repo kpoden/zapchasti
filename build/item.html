@@ -49,7 +49,7 @@
               <svg width="32" height="35">
                 <use xlink:href="images/sprite.svg#wa"></use>
               </svg></a>
-            <button class="btn header-top__btn">Заказать звонок</button>
+            <button class="btn header-top__btn modal-trigger">Заказать звонок</button>
           </div>
         </div>
         <div class="header-bottom">
@@ -119,7 +119,7 @@
             <div class="item-info__cost">11 940 ₽</div>
             <div class="item-info__subtitle quant-subtitle">Количество:</div>
             <div class="item-info__quant">
-              <div class="item-info__quant-input">
+              <div class="item-info__quant-input desk">
                 <button class="quant-minus quant-sign">-</button>
                 <input class="quant-num" type="text" value="1" data-max-count="20"/>
                 <button class="quant-plus quant-sign">+</button>
@@ -304,6 +304,45 @@
         <svg width="28" height="28">
           <use xlink:href="images/sprite.svg#more"></use>
         </svg><span>Ещё</span></a></footer>
+    <div class="modal popup-form">
+      <div class="modal__content mainForm__content"><span class="modal__close">&times;</span>
+        <div class="form__wrap">
+          <div class="form__title section-subtitle">Оставить контакты для связи</div>
+          <p class="form__subtitle">Введите данные для связи. Мы свяжемся с Вами в ближайшее время</p>
+          <form class="form" method="post"> 
+            <div class="form__input-line">
+              <div class="form__input-wrap">
+                <input class="form__input" type="text" name="name" placeholder="Имя*"/>
+              </div>
+              <div class="form__input-wrap">
+                <input class="form__input" type="text" name="surname" placeholder="Фамилия"/>
+              </div>
+            </div>
+            <div class="form__input-wrap">
+              <input class="form__input" type="text" name="company" placeholder="Название компании"/>
+            </div>
+            <div class="form__input-wrap">
+              <input class="form__input" type="text" name="phone" placeholder="+7 (900) 000-00-00*"/>
+            </div>
+            <div class="form__input-wrap">
+              <input class="form__input" type="text" name="email" placeholder="Адрес электронной почты"/>
+            </div>
+            <textarea class="form__textarea" name="message" placeholder="Причина обращения"></textarea>
+            <label class="form__attach">
+              <input class="form__attach-input" type="file" name="file"/>
+              <div class="form__attach-title"> <img src="/images/form/clip.png"/><span>Прикрепить документы</span></div><span class="form__attach-text"></span>
+            </label>
+            <input class="form__btn btn" type="submit" value="Оформить заказ"/>
+          </form>
+        </div>
+      </div>
+      <div class="modal__content thanksWindow__content hidden">
+        <div class="thanksWindow__info"><span class="modal__close">&times;</span><img class="thanksWindow__img" src="/images/form/green.png"/>
+          <h2 class="thanksWindow__title">Заказ №129056</h2>
+          <p class="thanksWindow__text">Благодарим Вас за оформление заказа. Менеджер свяжется с Вами в течение суток</p>
+        </div><a class="btn thanksWindow__btn" href="/catalog.html">Вернуться в каталог</a>
+      </div>
+    </div>
     <script src="libs/swiper-bundle.min.js"></script>
     <script src="libs/fslightbox.js"></script>
     <script src="scripts/main.js"></script>

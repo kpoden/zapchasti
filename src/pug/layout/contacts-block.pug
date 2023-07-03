@@ -52,11 +52,11 @@ main.wrapper
 
 
 
-        .contactsPage__form
+        .contactsPage__form.contacts-form
 
-            .form__wrap
+            .form__wrap.mainForm__content
                 .form__title.section-subtitle Оставить контакты для связи
-                form.form(method="post") 
+                form.form(method="post")
                     .form__input-line
                         .form__input-wrap
                             input.form__input(type="text" name="name" placeholder="Имя*")
@@ -75,4 +75,9 @@ main.wrapper
                             img(src="/images/form/clip.png")
                             span Прикрепить документы
                         span.form__attach-text
-                    button.form__btn.btn Заказать звонок
+                    input.form__btn.btn(type="submit" value="Заказать звонок")
+
+            .modal__content.thanksWindow__content.hidden
+                img.thanksWindow__img(src="/images/form/green.png")
+                h1.thanksWindow__title Заказ №129056
+                p.thanksWindow__text Благодарим Вас за оформление заказа. Менеджер свяжется с Вами в течение суток
