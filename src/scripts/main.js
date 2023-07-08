@@ -191,57 +191,69 @@ similarProductsSlider()
 function quantInput() {
   if(document.querySelector('.item-info__quant-input')) {
 
-    const quantInputWrap = document.querySelector('.item-info__quant-input');
+    const quantInputWraps = document.querySelectorAll('.item-info__quant-input');
 
-    const minusBtn = quantInputWrap.querySelector('.quant-minus');
-    const plusBtn = quantInputWrap.querySelector('.quant-plus');
-    const quantInput = quantInputWrap.querySelector('.quant-num');
 
-    minusBtn.addEventListener('click', () => {
-      let count = parseInt(quantInput.value) - 1;
-      count = count < 1 ? 1 : count;
-      quantInput.value = count;
-      quantInput.setAttribute('value', count);
+    quantInputWraps.forEach((el)=>{
+      const minusBtn = el.querySelector('.quant-minus');
+      const plusBtn = el.querySelector('.quant-plus');
+      const quantInput = el.querySelector('.quant-num');
+
+      minusBtn.addEventListener('click', () => {
+        let count = parseInt(quantInput.value) - 1;
+        count = count < 1 ? 1 : count;
+        quantInput.value = count;
+        quantInput.setAttribute('value', count);
+      });
+  
+      
+      plusBtn.addEventListener('click', () => {
+        let count = parseInt(quantInput.value) + 1;
+        count = count > parseInt(quantInput.getAttribute('data-max-count')) ? parseInt(quantInput.getAttribute('data-max-count')) : count;
+        quantInput.value = count;
+        quantInput.setAttribute('value', count);
+      });
+  
+      quantInput.addEventListener("change", function() {
+            if (this.value.match(/[^0-9]/g)) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            }
+            if (this.value == "") {
+                this.value = 1;
+                quantInput.setAttribute('value', 1);
+            }
+            if (this.value > parseInt(this.getAttribute('data-max-count'))) {
+                this.value = parseInt(this.getAttribute('data-max-count'));
+            }
+        });
+  
+      quantInput.addEventListener("keyup", function() {
+            if (this.value.match(/[^0-9]/g)) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            }
+        });
+  
+      quantInput.addEventListener("input", function() {
+            if (this.value.match(/[^0-9]/g)) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            }
+        });
+  
+      quantInput.addEventListener("click", function() {
+            if (this.value.match(/[^0-9]/g)) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            }
+        }); 
+
+
     });
+
 
     
-    plusBtn.addEventListener('click', () => {
-      let count = parseInt(quantInput.value) + 1;
-      count = count > parseInt(quantInput.getAttribute('data-max-count')) ? parseInt(quantInput.getAttribute('data-max-count')) : count;
-      quantInput.value = count;
-      quantInput.setAttribute('value', count);
-    });
 
-    quantInput.addEventListener("change", function() {
-          if (this.value.match(/[^0-9]/g)) {
-              this.value = this.value.replace(/[^0-9]/g, '');
-          }
-          if (this.value == "") {
-              this.value = 1;
-              quantInput.setAttribute('value', 1);
-          }
-          if (this.value > parseInt(this.getAttribute('data-max-count'))) {
-              this.value = parseInt(this.getAttribute('data-max-count'));
-          }
-      });
 
-    quantInput.addEventListener("keyup", function() {
-          if (this.value.match(/[^0-9]/g)) {
-              this.value = this.value.replace(/[^0-9]/g, '');
-          }
-      });
 
-    quantInput.addEventListener("input", function() {
-          if (this.value.match(/[^0-9]/g)) {
-              this.value = this.value.replace(/[^0-9]/g, '');
-          }
-      });
-
-    quantInput.addEventListener("click", function() {
-          if (this.value.match(/[^0-9]/g)) {
-              this.value = this.value.replace(/[^0-9]/g, '');
-          }
-      });  
+     
 
 
   }
@@ -284,6 +296,12 @@ modalFunc();
 
 
 
+
+
+
+
+
+
 class Form {
 
   constructor(id) {
@@ -291,20 +309,117 @@ class Form {
     this.form = this.formBlock.querySelector('form');
     this.mainContent = this.formBlock.querySelector('.mainForm__content');
     this.thanksContent = this.formBlock.querySelector('.thanksWindow__content');
+    this.form.reset();
     this.init();
   }
 
+  createError(err) {
+    let errorName = "Обязательное поле";
+    let errorEl = document.createElement('span');
+    errorEl.textContent = errorName;
+    errorEl.classList.add('_error-txt');
+
+    err.forEach((el) => {
+        const inputWrap = el.closest('.form__input-wrap');
+        let errorEl = document.createElement('span');
+        errorEl.textContent = errorName;
+        errorEl.classList.add('_error-txt');
+        el.classList.add('_error-input');
+        inputWrap.appendChild(errorEl);
+
+    });
+  }
+
+  deleteErrors() {
+    const errors = this.form.querySelectorAll('._error-txt');
+    errors.forEach((el) => {
+      const parent = el.parentNode;
+      parent.removeChild(el);
+    });
+
+
+    const inputs = this.form.querySelectorAll('input[type=text], input[type=tel');
+    inputs.forEach((input) => {
+      input.classList.remove('_error-input');
+    });
+  }
+
+
+  validateForm() {
+    const nameInput = this.form.querySelector('input[name="name"]');
+    const phoneInput = this.form.querySelector('input[name="phone"]');
+    const nameValue = nameInput.value.trim();
+    const phoneValue = phoneInput.value.trim();
+
+    this.deleteErrors();
+
+    let errorArr = [];
+
+    if (nameValue === '') {
+      errorArr.push(nameInput);
+    }
+
+    if (phoneValue === '') {
+      errorArr.push(phoneInput);
+    }
+
+    if(errorArr.length > 0) {
+      this.createError(errorArr);
+      return false;
+    } else {
+      return true;
+    }
+    
+}
+
   send() {
     this.form.addEventListener('submit', (e) => {
-      console.log('send');
       e.preventDefault();
+
+      if (!this.validateForm()) {
+
+        return;
+      }
+
+      const xhr = new XMLHttpRequest();
+      let formData = new FormData(this.form);
+      console.log(formData);
+      console.log('send form data');
+
+      xhr.open('POST', '/local/ajax/send.php');
+
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+
+          console.log(xhr.responseText);
+        } else {
+
+          console.error('Ошибка: ', xhr.status);
+        }
+      };
+
+      xhr.send(formData);
+      this.form.classList.add('sent');
+      this.form.reset();
+      
+
       this.mainContent.classList.add('hidden');
       this.thanksContent.classList.remove('hidden');
 
     });
   }
 
+  maskInit() {
+    const phoneInput = this.form.querySelector('input[name=phone]');
+    const maskOptions = {
+      mask: '+{7}(000) 000-00-00'
+    };
+
+    const mask = IMask(phoneInput, maskOptions);
+  }
+
   init() {
+    this.maskInit();
     this.send();
   }
 }
@@ -317,5 +432,30 @@ if(document.querySelector('.basket-form')) {
   const contactsForm = new Form('.basket-form');
 }
 
+
 const floatForm = new Form('.popup-form');
+
+
+function formAttach() {
+
+  document.querySelectorAll('.form__attach input[type=file]').forEach((el)=>{
+    el.addEventListener('change', function() {
+    var file = this.files[0];
+    var parent = this.parentNode;
+    var textElement = parent.querySelector('.form__attach-text');
+    // textElement.innerHTML = file.name;
+    if (file && file.size > 10 * 1024 * 1024) {
+      textElement.innerHTML = 'Максимальный размер файла 10Мб';
+      textElement.classList.add('_error');
+      console.log('max file size');
+    } else {
+      textElement.innerHTML = file ? file.name : '';
+      textElement.classList.remove('_error');
+      
+    }
+  });
+})
+}
+
+formAttach();
 
