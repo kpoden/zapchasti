@@ -149,7 +149,7 @@ main.wrapper
                             span.form__bottom-num 36 000 ₽ 
                 .form__wrap
                     .form__title.section-subtitle Введите личные данные
-                    form.form(method="post") 
+                    form.form.orderForm(method="post") 
                         .form__input-line
                             .form__input-wrap
                                 input.form__input(type="text" name="name" placeholder="Имя*")
@@ -189,7 +189,7 @@ main.wrapper
                                     span.form__bottom-text Итого
                                     span.form__bottom-num 36 000 ₽ 
 
-                            input.form__btn.btn(type="submit" value="Оформить заказ")
+                        input.form__btn.btn(type="submit" value="Оформить заказ")
 
                     span.form__footnote Для быстрого заказа введите номер телефона, оператор свяжется с Вами
 

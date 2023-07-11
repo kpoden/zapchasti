@@ -386,7 +386,13 @@ class Form {
       console.log(formData);
       console.log('send form data');
 
-      xhr.open('POST', '/local/ajax/send.php');
+      if(this.form.classList.contains('orderForm')) {
+        xhr.open('POST', 'local/ajax/order.php');
+      } else {
+        xhr.open('POST', '/local/ajax/send.php');
+      }
+
+      
 
       xhr.onload = function() {
         if (xhr.status === 200) {
