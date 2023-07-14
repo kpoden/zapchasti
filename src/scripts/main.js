@@ -308,9 +308,18 @@ class Form {
     this.formBlock = document.querySelector(id);
     this.form = this.formBlock.querySelector('form');
     this.mainContent = this.formBlock.querySelector('.mainForm__content');
+    this.modal = document.querySelector('.modal');
+    this.modalMainContent = this.modal.querySelector('.mainForm__content');
+    this.modalThanksContent = this.modal.querySelector('.thanksOrder');
+    this.modalThanksContent2 = this.modal.querySelector('.thanksCallback');
     this.thanksContent = this.formBlock.querySelector('.thanksWindow__content');
     this.form.reset();
     this.init();
+  }
+
+  openModal() {
+    this.modal.classList.add('opened');
+    document.body.classList.add('_locked');
   }
 
   createError(err) {
@@ -385,32 +394,47 @@ class Form {
       let formData = new FormData(this.form);
       console.log(formData);
       console.log('send form data');
+      let thanksWindow;
 
       if(this.form.classList.contains('orderForm')) {
         xhr.open('POST', 'local/ajax/order.php');
+        thanksWindow = this.modalThanksContent;
+        
       } else {
+        thanksWindow = this.modalThanksContent2;
         xhr.open('POST', '/local/ajax/send.php');
       }
 
-      
 
-      xhr.onload = function() {
+
+      
+      xhr.onload = () => {
         if (xhr.status === 200) {
+
+          this.modalMainContent.classList.add('hidden');
+          this.openModal();
+          if(thanksWindow == this.modalThanksContent) {
+            thanksWindow.querySelector('.thanksWindow__title').textContent = 'Заказ №' +xhr.responseText;
+          }
+          
+
 
           console.log(xhr.responseText);
         } else {
-
+          
+          thanksWindow.classList.remove('hidden');
+      
+          
           console.error('Ошибка: ', xhr.status);
         }
       };
 
       xhr.send(formData);
       this.form.classList.add('sent');
-      this.form.reset();
       
-
-      this.mainContent.classList.add('hidden');
-      this.thanksContent.classList.remove('hidden');
+      this.form.reset();
+        // this.mainContent.classList.add('hidden');
+      // this.thanksContent.classList.remove('hidden');
 
     });
   }

@@ -31,11 +31,20 @@
 
                 input.form__btn.btn(type="submit" value="Оформить заказ")
 
-    .modal__content.thanksWindow__content.hidden
+    .modal__content.thanksWindow__content.thanksOrder.hidden
         .thanksWindow__info
             span.modal__close &times;
             img.thanksWindow__img(src="images/form/green.png")
             h2.thanksWindow__title Заказ №129056
             p.thanksWindow__text Благодарим Вас за оформление заказа. Менеджер свяжется с Вами в течение суток
+
+        a.btn.thanksWindow__btn(href="/catalog.html") Вернуться в каталог
+
+    .modal__content.thanksWindow__content.thanksCallback.hidden
+        .thanksWindow__info
+            span.modal__close &times;
+            img.thanksWindow__img(src="images/form/green.png")
+            h2.thanksWindow__title Благодарим за заявку.
+            p.thanksWindow__text Менеджер свяжется с Вами в течение суток
 
         a.btn.thanksWindow__btn(href="/catalog.html") Вернуться в каталог
