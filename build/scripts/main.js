@@ -410,19 +410,18 @@ class Form {
       
       xhr.onload = () => {
         if (xhr.status === 200) {
-
+          thanksWindow.classList.remove('hidden');
           this.modalMainContent.classList.add('hidden');
           this.openModal();
           if(thanksWindow == this.modalThanksContent) {
             thanksWindow.querySelector('.thanksWindow__title').textContent = 'Заказ №' +xhr.responseText;
           }
-          
 
 
           console.log(xhr.responseText);
         } else {
           
-          thanksWindow.classList.remove('hidden');
+       
       
           
           console.error('Ошибка: ', xhr.status);
