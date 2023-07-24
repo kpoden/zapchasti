@@ -398,10 +398,8 @@ class Form {
 
       if(this.form.classList.contains('orderForm')) {
         xhr.open('POST', 'local/ajax/order.php');
-        thanksWindow = this.modalThanksContent;
         
       } else {
-        thanksWindow = this.modalThanksContent2;
         xhr.open('POST', '/local/ajax/send.php');
       }
 
@@ -410,19 +408,8 @@ class Form {
       
       xhr.onload = () => {
         if (xhr.status === 200) {
-          thanksWindow.classList.remove('hidden');
-          this.modalMainContent.classList.add('hidden');
-          this.openModal();
-          if(thanksWindow == this.modalThanksContent) {
-            thanksWindow.querySelector('.thanksWindow__title').textContent = 'Заказ №' +xhr.responseText;
-          }
-
-
           console.log(xhr.responseText);
         } else {
-          
-       
-      
           
           console.error('Ошибка: ', xhr.status);
         }

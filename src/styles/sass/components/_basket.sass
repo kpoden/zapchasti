@@ -11,6 +11,7 @@
         width: 100%
 
 .basketPage__basket
+    width: 100%
 
 .basket__wrap
 
@@ -222,6 +223,8 @@
         font-weight: 700
         line-height: 100%
         flex-shrink: 0
+        width: 150px
+        text-align: right
 
         +mw(1150)
             font-size: 18px
@@ -229,6 +232,8 @@
         +mw(750)
             font-size: 20px
             line-height: 150%
+            width: auto
+            text-align: left
 
 
     &__price__mobWrap
@@ -260,7 +265,7 @@
             text-decoration: underline
             color: #2369ff
 
-.basketPage.empty
+.basketPage.emptyBasket
 
     .basket
         display: none
